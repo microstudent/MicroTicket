@@ -3,6 +3,7 @@ package com.microstudent.app.microticket.model.impl;
 import com.microstudent.app.microticket.config.ContextApplication;
 import com.microstudent.app.microticket.model.entity.Movie;
 import com.microstudent.app.microticket.util.NetworkUtils;
+import com.microstudent.app.microticket.util.PhoneUtil;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class LeastReleaseModelImpl {
             movies = getMoviesByNetWork(cityID);
         }
         if (movies == null) {
-            listener.onFailure("获取失败");
+            listener.onFailure(PhoneUtil.getImei());
             return;
         }
         listener.onSuccess(movies);
