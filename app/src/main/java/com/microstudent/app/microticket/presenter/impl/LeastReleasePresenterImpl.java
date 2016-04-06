@@ -2,6 +2,7 @@ package com.microstudent.app.microticket.presenter.impl;
 
 import android.os.Handler;
 
+import com.microstudent.app.microticket.adapter.MoviesAdapter;
 import com.microstudent.app.microticket.model.entity.Movie;
 import com.microstudent.app.microticket.model.impl.LeastReleaseModelImpl;
 import com.microstudent.app.microticket.presenter.LeastReleasePresenter;
@@ -33,6 +34,7 @@ public class LeastReleasePresenterImpl implements LeastReleasePresenter,LeastRel
                 @Override
                 public void run() {
                     model.getMovies(cityNo, LeastReleasePresenterImpl.this);
+                    view.setAdapter(new MoviesAdapter(view.getContext()));
                 }
             },2000);
         }
@@ -51,7 +53,7 @@ public class LeastReleasePresenterImpl implements LeastReleasePresenter,LeastRel
     @Override
     public void onSuccess(List<Movie> data) {
         if (view != null) {
-            return;
+
         }
     }
 

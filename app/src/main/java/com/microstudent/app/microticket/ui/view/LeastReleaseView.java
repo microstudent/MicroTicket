@@ -1,5 +1,8 @@
 package com.microstudent.app.microticket.ui.view;
 
+import android.content.Context;
+
+import com.microstudent.app.microticket.adapter.common.BaseRvAdapter;
 import com.microstudent.app.microticket.model.entity.Movie;
 
 import java.util.List;
@@ -12,4 +15,8 @@ public interface LeastReleaseView {
     void hideLoading();
     void showError(String msg);
     void setMoviesData(List<Movie> movies);
+
+    void setAdapter(BaseRvAdapter adapter);//设置Adapter
+
+    Context getContext();//获得Context
 }
