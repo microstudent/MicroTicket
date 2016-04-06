@@ -92,6 +92,10 @@ public class Movie {
         return this;
     }
 
+    public int getId() {
+        return id;
+    }
+
     private int id;//识别id
     private String actor;//演员
     private String country;//国家

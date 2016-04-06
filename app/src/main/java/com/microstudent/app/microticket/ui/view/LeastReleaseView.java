@@ -10,6 +10,6 @@ import java.util.List;
 public interface LeastReleaseView {
     void showLoading();
     void hideLoading();
-    void showError();
+    void showError(String msg);
     void setMoviesData(List<Movie> movies);
 }

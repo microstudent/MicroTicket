@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ColorfulAnimView</string>
+    <string name="loading">载入中...</string>
+</resources>

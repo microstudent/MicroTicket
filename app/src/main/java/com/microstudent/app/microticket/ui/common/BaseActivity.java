@@ -23,10 +23,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(getContentViewId());
         initView();
-        setupView();
+        setupView(savedInstanceState);
     }
     //配置view
-    protected abstract void setupView();
+    protected abstract void setupView(Bundle savedInstanceState);
     //初始化view
     protected abstract void initView();
     //设置layoutID

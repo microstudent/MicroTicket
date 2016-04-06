@@ -1,4 +1,4 @@
-package com.microstudent.app.microticket;
+package com.microstudent.app.colorfulanimview;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
@@ -9,6 +9,5 @@ import android.test.ApplicationTestCase;
 public class ApplicationTest extends ApplicationTestCase<Application> {
     public ApplicationTest() {
         super(Application.class);
-
     }
 }
