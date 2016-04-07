@@ -1,6 +1,12 @@
 package com.microstudent.app.microticket;
 
+import com.microstudent.app.microticket.api.APIList;
+import com.microstudent.app.microticket.util.OkHttpUtil;
+import com.microstudent.app.microticket.util.TimeUtil;
+
 import org.junit.Test;
+
+import java.util.TreeMap;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +16,5 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
     }
 }

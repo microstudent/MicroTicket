@@ -1,6 +1,7 @@
 package com.microstudent.app.microticket.util;
 
 import android.content.Context;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 
 import com.microstudent.app.microticket.config.ContextApplication;
@@ -16,5 +17,9 @@ public final class PhoneUtil {
         if (telephonyManager != null) {
             return telephonyManager.getDeviceId();
         } else return "";
+    }
+
+    public static String getAndroidVersion() {
+        return Build.VERSION.RELEASE;
     }
 }

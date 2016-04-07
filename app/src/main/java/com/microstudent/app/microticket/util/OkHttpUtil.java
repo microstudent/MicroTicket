@@ -1,7 +1,9 @@
 package com.microstudent.app.microticket.util;
 
+import com.microstudent.app.microticket.api.APIList;
+
 import java.io.IOException;
-import java.util.List;
+import java.util.TreeMap;
 
 import okhttp3.Callback;
 import okhttp3.Headers;
@@ -20,6 +22,7 @@ public class OkHttpUtil {
 
     private static final OkHttpClient client = new OkHttpClient();
 
+
     public static Response execute(Request request) throws IOException {
         return client.newCall(request).execute();
     }
@@ -30,25 +33,40 @@ public class OkHttpUtil {
     }
 
     /**
-     * 根据List的内容生成body内容
+     * 根据键值对生成post_body
+     * @param params 键值对
+     * @return body
+     */
+    public static String convertToBodyString(TreeMap<String, String> params) {
+        StringBuilder builder = new StringBuilder();
+        final String bodyWithoutSign = convertToBodySrtingWithoutSign(params);
+        final String sign = Md5Util.string2Md5Upper(APIList.signSecret + bodyWithoutSign);
+        builder.append("sign=");
+        builder.append(sign);
+        builder.append("&");
+        builder.append(bodyWithoutSign);
+        return builder.toString();
+    }
+
+    /**
+     * 根据有序TreeMap的内容生成body内容,不包含sign值
      * @param parameters 键值对
      * @return body
      */
-    public static String convertToBodySrting(List<BasicNameValuePair> parameters) {
-            final StringBuilder result = new StringBuilder();
-            for (final BasicNameValuePair parameter : parameters) {
-                final String encodedName = parameter.key;
-                final String encodedValue = parameter.value;
-                if (result.length() > 0) {
-                    result.append('&');
-                }
-                result.append(encodedName);
-                if (encodedValue != null) {
-                    result.append('=');
-                    result.append(encodedValue);
-                }
+    private static String convertToBodySrtingWithoutSign(TreeMap<String,String> parameters) {
+        final StringBuilder result = new StringBuilder();
+        for (String encodedName : parameters.keySet()) {
+            final String encodedValue = parameters.get(encodedName);
+            if (result.length() > 0) {
+                result.append('&');
             }
-            return result.toString();
+            result.append(encodedName);
+            result.append('=');
+            if (encodedValue != null) {
+                result.append(encodedValue);
+            }
+        }
+        return result.toString();
     }
 
     /**

@@ -1,11 +1,14 @@
 package com.microstudent.app.microticket.model.impl;
 
+import com.microstudent.app.microticket.api.APIList;
 import com.microstudent.app.microticket.config.ContextApplication;
 import com.microstudent.app.microticket.model.entity.Movie;
 import com.microstudent.app.microticket.util.NetworkUtils;
+import com.microstudent.app.microticket.util.OkHttpUtil;
 import com.microstudent.app.microticket.util.PhoneUtil;
 
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * Created by MicroStudent on 2016/4/6.
@@ -29,7 +32,7 @@ public class LeastReleaseModelImpl {
             movies = getMoviesByNetWork(cityID);
         }
         if (movies == null) {
-            listener.onFailure(PhoneUtil.getImei());
+            listener.onFailure("连接失败");
             return;
         }
         listener.onSuccess(movies);
