@@ -1,23 +1,29 @@
 package com.microstudent.app.microticket.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.microstudent.app.colorfulanimview.AnimProgressDialog;
 import com.microstudent.app.microticket.R;
 import com.microstudent.app.microticket.adapter.common.BaseRvAdapter;
+import com.microstudent.app.microticket.api.APIList;
+import com.microstudent.app.microticket.api.CityAPI;
 import com.microstudent.app.microticket.model.entity.Movie;
 import com.microstudent.app.microticket.presenter.LeastReleasePresenter;
 import com.microstudent.app.microticket.presenter.impl.LeastReleasePresenterImpl;
 import com.microstudent.app.microticket.ui.common.BaseFragment;
 import com.microstudent.app.microticket.ui.view.LeastReleaseView;
 
+import java.io.IOException;
 import java.util.List;
 
 

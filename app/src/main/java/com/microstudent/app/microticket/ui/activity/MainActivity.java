@@ -4,6 +4,7 @@ package com.microstudent.app.microticket.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -32,6 +33,7 @@ public class MainActivity extends BaseActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         fragmentContainer = (FrameLayout) findViewById(R.id.fragment_container);
     }
+
 
     @Override
     protected int getContentViewId() {

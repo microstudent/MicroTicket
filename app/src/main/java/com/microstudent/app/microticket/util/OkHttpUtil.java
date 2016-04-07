@@ -40,7 +40,7 @@ public class OkHttpUtil {
     public static String convertToBodyString(TreeMap<String, String> params) {
         StringBuilder builder = new StringBuilder();
         final String bodyWithoutSign = convertToBodySrtingWithoutSign(params);
-        final String sign = Md5Util.string2Md5Upper(APIList.signSecret + bodyWithoutSign);
+        final String sign = Md5Util.string2Md5Upper(APIList.SIGN_SECRET + bodyWithoutSign);
         builder.append("sign=");
         builder.append(sign);
         builder.append("&");

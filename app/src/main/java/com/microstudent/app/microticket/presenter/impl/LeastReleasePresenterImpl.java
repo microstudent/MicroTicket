@@ -3,18 +3,21 @@ package com.microstudent.app.microticket.presenter.impl;
 import android.os.Handler;
 
 import com.microstudent.app.microticket.adapter.MoviesAdapter;
+import com.microstudent.app.microticket.model.OnLoadingCompleteListener;
 import com.microstudent.app.microticket.model.entity.Movie;
+import com.microstudent.app.microticket.model.impl.CityModelImpl;
 import com.microstudent.app.microticket.model.impl.LeastReleaseModelImpl;
 import com.microstudent.app.microticket.presenter.LeastReleasePresenter;
 import com.microstudent.app.microticket.ui.view.LeastReleaseView;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
  *
  * Created by MicroStudent on 2016/4/6.
  */
-public class LeastReleasePresenterImpl implements LeastReleasePresenter,LeastReleaseModelImpl.OnLoadingCompleteListener {
+public class LeastReleasePresenterImpl implements LeastReleasePresenter,OnLoadingCompleteListener<List<Movie>> {
     private LeastReleaseView view;
     private LeastReleaseModelImpl model;
 
@@ -33,7 +36,7 @@ public class LeastReleasePresenterImpl implements LeastReleasePresenter,LeastRel
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    model.getMovies(cityNo, LeastReleasePresenterImpl.this);
+                    //model.getMovies(cityNo, LeastReleasePresenterImpl.this);
                     view.setAdapter(new MoviesAdapter(view.getContext()));
                 }
             },2000);

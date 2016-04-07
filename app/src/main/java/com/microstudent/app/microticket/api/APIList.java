@@ -10,11 +10,11 @@ import java.util.TreeMap;
  * Created by MicroStudent on 2016/4/6.
  */
 public final class APIList {
-    public final String cityList = "http://androidcgi.wepiao.com/city/list";
+    public static final String URL_CITY_LIST = "http://androidcgi.wepiao.com/city/list";
 
     private static TreeMap<String, String> map = new TreeMap<>();
 
-    public static final String signSecret = "zJwaQBQ553lHr6DfnX02WcJtZF";//密文值
+    public static final String SIGN_SECRET = "zJwaQBQ553lHr6DfnX02WcJtZF";//密文值
 
     static {
         map.put("v", "2016022301");
