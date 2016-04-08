@@ -34,11 +34,13 @@ public class CityAPI {
         try {
             response = OkHttpUtil.execute(request);
             if (response.isSuccessful()) {
+                Log.d(TAG, "response is successful!");
                 return response.body().string();
             }
         } catch (IOException e) {
             Log.e(TAG, "发生IO异常");
         }
+        Log.d(TAG, "response is failed!");
         return "";
     }
 
@@ -53,5 +55,4 @@ public class CityAPI {
                 .post(body).url(APIList.URL_CITY_LIST).headers(OkHttpUtil.getDefaultHeaders().build()).build();
         OkHttpUtil.enqueue(request,callback);
     }
-
 }

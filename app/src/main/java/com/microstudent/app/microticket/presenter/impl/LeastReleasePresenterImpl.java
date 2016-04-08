@@ -1,16 +1,16 @@
 package com.microstudent.app.microticket.presenter.impl;
 
 import android.os.Handler;
+import android.view.View;
 
 import com.microstudent.app.microticket.adapter.MoviesAdapter;
+import com.microstudent.app.microticket.api.CityAPI;
 import com.microstudent.app.microticket.model.OnLoadingCompleteListener;
 import com.microstudent.app.microticket.model.entity.Movie;
-import com.microstudent.app.microticket.model.impl.CityModelImpl;
 import com.microstudent.app.microticket.model.impl.LeastReleaseModelImpl;
 import com.microstudent.app.microticket.presenter.LeastReleasePresenter;
 import com.microstudent.app.microticket.ui.view.LeastReleaseView;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -55,9 +55,9 @@ public class LeastReleasePresenterImpl implements LeastReleasePresenter,OnLoadin
 
     @Override
     public void onSuccess(List<Movie> data) {
-        if (view != null) {
-
-        }
+//        if (view != null) {
+//
+//        }
     }
 
     @Override

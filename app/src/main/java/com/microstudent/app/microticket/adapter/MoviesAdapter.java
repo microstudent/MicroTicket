@@ -9,6 +9,7 @@ import com.microstudent.app.microticket.adapter.common.BaseRvAdapter;
 import com.microstudent.app.microticket.adapter.common.BaseViewHolder;
 
 /**
+ *
  * Created by MicroStudent on 2016/4/6.
  */
 public class MoviesAdapter extends BaseRvAdapter<MoviesAdapter.MoviesViewHolder> implements BaseViewHolder.OnItemClickListener{
