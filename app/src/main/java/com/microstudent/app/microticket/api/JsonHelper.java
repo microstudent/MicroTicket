@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.microstudent.app.microticket.model.entity.City;
+import com.microstudent.app.microticket.model.entity.Movie;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -46,7 +47,7 @@ public class JsonHelper {
                 return jsonObject.getString("data");
             }
         }
-        Log.d(TAG, "returning empty String, the data is null");
+        Log.d(TAG, "returning empty String, the data is null" + jsonBody);
         return "";
     }
 
@@ -68,4 +69,23 @@ public class JsonHelper {
         return null;
     }
 
+
+    /**
+     * 将data字段转换为Movie类的List，可能返回null
+     * @param jsonString data字段
+     * @return CityList nullable
+     */
+    public static List<Movie> toMovieList(String jsonString) {
+        if (!jsonString.isEmpty()) {
+            Log.d(TAG, "trying to convert jsonString to List<Movie>");
+            List<Movie> list = new ArrayList<>();
+            try {
+                list = JSON.parseArray(jsonString, Movie.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return list;
+        }
+        return null;
+    }
 }

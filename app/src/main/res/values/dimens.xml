@@ -31,5 +31,5 @@
     <dimen name="image_huge">90dp</dimen>
 
     <!--item大小-->
-    <dimen name="item_movie_height">50dp</dimen>
+    <dimen name="item_movie_height">100dp</dimen>
 </resources>

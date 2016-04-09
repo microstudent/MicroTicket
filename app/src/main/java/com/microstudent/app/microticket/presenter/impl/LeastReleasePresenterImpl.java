@@ -1,45 +1,39 @@
 package com.microstudent.app.microticket.presenter.impl;
 
-import android.os.Handler;
-import android.view.View;
-
 import com.microstudent.app.microticket.adapter.MoviesAdapter;
-import com.microstudent.app.microticket.api.CityAPI;
 import com.microstudent.app.microticket.model.OnLoadingCompleteListener;
 import com.microstudent.app.microticket.model.entity.Movie;
 import com.microstudent.app.microticket.model.impl.LeastReleaseModelImpl;
 import com.microstudent.app.microticket.presenter.LeastReleasePresenter;
 import com.microstudent.app.microticket.ui.view.LeastReleaseView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * Created by MicroStudent on 2016/4/6.
  */
-public class LeastReleasePresenterImpl implements LeastReleasePresenter,OnLoadingCompleteListener<List<Movie>> {
-    private LeastReleaseView view;
-    private LeastReleaseModelImpl model;
+public class LeastReleasePresenterImpl implements LeastReleasePresenter,OnLoadingCompleteListener<ArrayList<Movie>> {
+    private LeastReleaseView mView;
+    private LeastReleaseModelImpl mModel;
 
+    private MoviesAdapter mAdapter;
 
     public LeastReleasePresenterImpl(LeastReleaseView leastReleaseView) {
-        this.view = leastReleaseView;
-        model = new LeastReleaseModelImpl();
+        this.mView = leastReleaseView;
+        mModel = new LeastReleaseModelImpl();
+        mAdapter = new MoviesAdapter(mView.getContext());
+
     }
 
 
     @Override
     public void loadData(final int cityNo) {
-        if (view != null) {
-            view.showLoading();
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    //model.getMovies(cityNo, LeastReleasePresenterImpl.this);
-                    view.setAdapter(new MoviesAdapter(view.getContext()));
-                }
-            },2000);
+        if (mView != null) {
+            mView.setAdapter(mAdapter);
+
+            mView.showLoading();
+            mModel.loadMovies(cityNo, this);
         }
     }
 
@@ -50,21 +44,18 @@ public class LeastReleasePresenterImpl implements LeastReleasePresenter,OnLoadin
 
     @Override
     public void onDestroy() {
-        view = null;
+        mView = null;
     }
 
     @Override
-    public void onSuccess(List<Movie> data) {
-//        if (view != null) {
-//
-//        }
+    public void onSuccess(ArrayList<Movie> data) {
+        mAdapter.setData(data);
+        mView.hideLoading();
     }
 
     @Override
     public void onFailure(String msg) {
-        if (view != null) {
-            view.hideLoading();
-            view.showError(msg);
-        }
+        mView.hideLoading();
+        mView.showError(msg);
     }
 }

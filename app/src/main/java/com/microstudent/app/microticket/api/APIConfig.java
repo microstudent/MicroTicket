@@ -6,11 +6,15 @@ import com.microstudent.app.microticket.util.TimeUtil;
 
 import java.util.TreeMap;
 
+import okhttp3.Headers;
+
 /**
+ * API的基本配置
  * Created by MicroStudent on 2016/4/6.
  */
-public final class APIList {
+public final class APIConfig {
     public static final String URL_CITY_LIST = "http://androidcgi.wepiao.com/city/list";
+    public static final String URL_MOVIE_LIST = "http://androidcgi.wepiao.com/movie/list";
 
     private static TreeMap<String, String> map = new TreeMap<>();
 
@@ -33,5 +37,14 @@ public final class APIList {
 
     public static TreeMap<String,String> getDefaultParams() {
         return map;
+    }
+
+    /**
+     * 获得默认的header
+     * @return 默认的header
+     */
+    public static Headers.Builder getDefaultHeaders() {
+        return new Headers.Builder().add("channelId", "9").add("Content-Type", "application/x-www-form-urlencoded")
+                .add("Host", "androidcgi.wepiao.com").add("Connection", "Keep-Alive");
     }
 }

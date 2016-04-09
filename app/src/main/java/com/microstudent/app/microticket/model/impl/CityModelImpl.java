@@ -14,6 +14,7 @@ import com.microstudent.app.microticket.api.JsonHelper;
 import com.microstudent.app.microticket.model.OnLoadingCompleteListener;
 import com.microstudent.app.microticket.model.entity.City;
 import com.microstudent.app.microticket.model.entity.Result;
+import com.microstudent.app.microticket.util.NetworkUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,6 @@ public class CityModelImpl{
     private static final int MESSAGE_POST_RESULT = 1;//handler的what
 
     private static final String TAG = "CityModelImpl";
-    private CityAPI mApi = new CityAPI();
 
     private Handler mMainHandler = new Handler(Looper.getMainLooper()) {
 
@@ -54,7 +54,7 @@ public class CityModelImpl{
         Runnable task = new Runnable() {
             @Override
             public void run() {
-                String jsonBody = mApi.getCityJsonString();
+                String jsonBody = CityAPI.getCityJsonString();
                 ArrayList<City> city = convertToArrayList(jsonBody);
                 if (city != null) {
                     Log.d(TAG, "sending result");

@@ -1,6 +1,6 @@
 package com.microstudent.app.microticket.util;
 
-import com.microstudent.app.microticket.api.APIList;
+import com.microstudent.app.microticket.api.APIConfig;
 
 import java.io.IOException;
 import java.util.TreeMap;
@@ -40,7 +40,7 @@ public class OkHttpUtil {
     public static String convertToBodyString(TreeMap<String, String> params) {
         StringBuilder builder = new StringBuilder();
         final String bodyWithoutSign = convertToBodySrtingWithoutSign(params);
-        final String sign = Md5Util.string2Md5Upper(APIList.SIGN_SECRET + bodyWithoutSign);
+        final String sign = Md5Util.string2Md5Upper(APIConfig.SIGN_SECRET + bodyWithoutSign);
         builder.append("sign=");
         builder.append(sign);
         builder.append("&");
@@ -69,15 +69,6 @@ public class OkHttpUtil {
         return result.toString();
     }
 
-    /**
-     * 获得默认的header
-     * @return 默认的header
-     */
-    public static Headers.Builder getDefaultHeaders() {
-        return new Headers.Builder().add("channelId", "9").add("Content-Type", "application/x-www-form-urlencoded")
-                .add("Host", "androidcgi.wepiao.com").add("Connection", "Keep-Alive");
-    }
-
 
     private static String post(String url,RequestBody body)throws IOException {
         Request request = new Request.Builder().url(url).post(body).build();
@@ -86,16 +77,6 @@ public class OkHttpUtil {
             return response.body().string();
         } else {
             throw new IOException("Unexpected code " + response);
-        }
-    }
-
-    private class BasicNameValuePair {
-        public final String key;
-        public final String value;
-
-        public BasicNameValuePair(String key, String value) {
-            this.key = key;
-            this.value = value;
         }
     }
 }
