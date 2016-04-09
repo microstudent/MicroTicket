@@ -31,10 +31,4 @@ public class City {
     public void setPinyin(String pinyin) {
         this.pinyin = pinyin;
     }
-
-    public City(String cityID, String name, String pinyin) {
-        this.cityID = cityID;
-        this.name = name;
-        this.pinyin = pinyin;
-    }
 }

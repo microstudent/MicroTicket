@@ -14,7 +14,6 @@ import com.microstudent.app.microticket.ui.common.BaseActivity;
 import com.microstudent.app.microticket.ui.fragment.CityListFragment;
 import com.microstudent.app.microticket.ui.fragment.LeastReleaseFragment;
 
-import org.greenrobot.eventbus.EventBus;
 
 public class MainActivity extends BaseActivity {
 

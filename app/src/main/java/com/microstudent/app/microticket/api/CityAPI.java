@@ -38,7 +38,7 @@ public class CityAPI {
                 return response.body().string();
             }
         } catch (IOException e) {
-            Log.e(TAG, "发生IO异常");
+            e.printStackTrace();
         }
         Log.d(TAG, "response is failed!");
         return "";

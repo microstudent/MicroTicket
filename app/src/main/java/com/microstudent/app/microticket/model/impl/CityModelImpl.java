@@ -6,13 +6,17 @@ import android.os.Message;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.microstudent.app.microticket.api.APIThreadPool;
 import com.microstudent.app.microticket.api.CityAPI;
+import com.microstudent.app.microticket.api.JsonHelper;
 import com.microstudent.app.microticket.model.OnLoadingCompleteListener;
 import com.microstudent.app.microticket.model.entity.City;
 import com.microstudent.app.microticket.model.entity.Result;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -51,14 +55,14 @@ public class CityModelImpl{
             @Override
             public void run() {
                 String jsonBody = mApi.getCityJsonString();
-                if (!jsonBody.isEmpty()) {
-                    ArrayList<City> city = convertToArrayList(jsonBody);
-                    if (city == null) {
-                        //若获取转换失败则发送空消息给Handler处理
-                        mMainHandler.obtainMessage().sendToTarget();
-                        return;
-                    }
+                ArrayList<City> city = convertToArrayList(jsonBody);
+                if (city != null) {
+                    Log.d(TAG, "sending result");
                     mMainHandler.obtainMessage(MESSAGE_POST_RESULT, city).sendToTarget();
+                } else {
+                    //转换失败，发送空消息
+                    Log.d(TAG, "sending empty message");
+                    mMainHandler.obtainMessage().sendToTarget();
                 }
             }
         };
@@ -67,14 +71,12 @@ public class CityModelImpl{
 
     private ArrayList<City> convertToArrayList(String jsonBody) {
         Log.d(TAG, "得到jsonBody");
-        Log.d(TAG, jsonBody.substring(0, 30));
+        if (!jsonBody.isEmpty()) {
+            String dataBody = JsonHelper.getJsonDataToString(jsonBody);
 
-        ArrayList<City> cities = new ArrayList<>();
-        cities.add(new City("210","广州","guangzhou"));
-        cities.add(new City("211","上海","shanghai"));
-        cities.add(new City("212","北京","beijing"));
-
-        return cities;
+            return (ArrayList<City>) JsonHelper.toCityList(dataBody);
+        }else
+            return null;
     }
 
     public void getCity(OnLoadingCompleteListener<ArrayList<City>> listener) {
