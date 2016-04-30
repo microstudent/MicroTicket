@@ -20,17 +20,17 @@ import java.util.ArrayList;
  */
 public class IndexCursor implements Cursor {
 
-    private ArrayList<String> mData;
+    private Object[] mData;
 
     private int mPosition = 0;
 
-    public IndexCursor(ArrayList<String> data) {
+    public IndexCursor(Object[] data) {
         mData = data;
     }
 
     @Override
     public int getCount() {
-        return mData.size();
+        return mData.length;
     }
 
     @Override
@@ -51,13 +51,13 @@ public class IndexCursor implements Cursor {
     @Override
     public String getString(int columnIndex) {
         //if first character is Chinese.
-        if (CharacterUtils.isChinese(mData.get(mPosition).charAt(0))) {
-            String[] pinyinArray = PinyinHelper.toHanyuPinyinStringArray(mData.get(mPosition).charAt(0));
+        if (CharacterUtils.isChinese(mData[mPosition].toString().charAt(0))) {
+            String[] pinyinArray = PinyinHelper.toHanyuPinyinStringArray(mData[mPosition].toString().charAt(0));
             if (pinyinArray != null) {
                 return pinyinArray[0].substring(0, 1);
             }
         }
-        return mData.get(mPosition).substring(0, 1);
+        return mData[mPosition].toString().substring(0, 1);
     }
 
     @Override

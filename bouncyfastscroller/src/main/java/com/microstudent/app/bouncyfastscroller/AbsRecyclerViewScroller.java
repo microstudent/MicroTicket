@@ -52,7 +52,7 @@ public abstract class AbsRecyclerViewScroller extends FrameLayout implements Rec
     //the indexer for indexBar.
     private AlphabetIndexer mAlphabetIndexer;
 
-    private ArrayList<String> mData;
+    private Object[] mData;
     /**
      *  when is touching, the handle or thumb will NOT move the position
      *  which is calculated according to recyclerView.
@@ -126,7 +126,7 @@ public abstract class AbsRecyclerViewScroller extends FrameLayout implements Rec
         }
     }
 
-    protected ArrayList<String> getData(){
+    protected Object[] getData(){
         if (mData != null) {
             return mData;
         } else {
@@ -138,7 +138,7 @@ public abstract class AbsRecyclerViewScroller extends FrameLayout implements Rec
      * setting the data from recyclerView, the data is responsible to sort by alphabet.
      * @param Data data from recyclerView
      */
-    public void setData(ArrayList<String> Data) {
+    public void setData(Object[] Data) {
         this.mData = Data;
     }
 

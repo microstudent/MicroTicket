@@ -33,6 +33,10 @@ public class CityListPresenterImpl implements OnLoadingCompleteListener<ArrayLis
         mModel.getCity(this);
     }
 
+    public Object[] getCityArray() {
+        return mAdapter.getDataSet();
+    }
+
     public void onDestroy() {
         mView = null;
     }
@@ -42,6 +46,8 @@ public class CityListPresenterImpl implements OnLoadingCompleteListener<ArrayLis
         Log.d(TAG, "（onSuccess）In UI thread? "+ String.valueOf(Looper.getMainLooper() == Looper.myLooper()));
         mAdapter.setDataSet(data);
         mView.setAdapter(mAdapter);
+
+        mView.setData(getCityArray());
     }
 
     @Override

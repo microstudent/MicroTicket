@@ -49,6 +49,13 @@ public class CityListFragment extends BaseFragment {
         mScroller.setRecyclerView(mRecyclerView);
     }
 
+
+    public void setData(Object[] data) {
+        if (data != null) {
+            mScroller.setData(data);
+        }
+    }
+
     public void setAdapter(CityListAdapter adapter) {
         mRecyclerView.setAdapter(adapter);
     }

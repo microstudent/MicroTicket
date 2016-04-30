@@ -11,9 +11,14 @@ import com.microstudent.app.microticket.adapter.common.BaseRvAdapter;
 import com.microstudent.app.microticket.adapter.common.BaseViewHolder;
 import com.microstudent.app.microticket.model.entity.City;
 
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -22,7 +27,7 @@ import java.util.HashMap;
 public class CityListAdapter extends BaseRvAdapter<CityListAdapter.CityViewHolder> {
     public static final String TAG = "CityListAdapter";
 
-    private ArrayList<City> mData;
+    private List<City> mData;
 
     public CityListAdapter(Context mContext) {
         super(mContext);
@@ -53,7 +58,15 @@ public class CityListAdapter extends BaseRvAdapter<CityListAdapter.CityViewHolde
 
     public void setDataSet(ArrayList<City> data) {
         this.mData = data;
+        Collections.sort(mData);
         notifyDataSetChanged();
+    }
+
+    public Object[] getDataSet() {
+        if (mData != null) {
+            return mData.toArray();
+        }
+        return null;
     }
 
     class CityViewHolder extends BaseViewHolder{

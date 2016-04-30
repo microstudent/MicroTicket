@@ -13,7 +13,7 @@
 
     <com.microstudent.app.bouncyfastscroller.vertical.VerticalBouncyFastScroller
         android:id="@+id/vbfs"
-        app:behavior="simple"
+        app:behavior="always_show_index"
         app:theme_color="@color/colorAccent"
         app:alpha2="0.6"
         android:layout_gravity="center_vertical|end"
