@@ -1,1 +1,1 @@
-include ':app', ':colorfulanimview'
+include ':app', ':colorfulanimview', ':bouncyfastscroller'

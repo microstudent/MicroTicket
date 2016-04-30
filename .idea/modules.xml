@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MicroTicket.iml" filepath="$PROJECT_DIR$/MicroTicket.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bouncyfastscroller/bouncyfastscroller.iml" filepath="$PROJECT_DIR$/bouncyfastscroller/bouncyfastscroller.iml" />
       <module fileurl="file://$PROJECT_DIR$/colorfulanimview/colorfulanimview.iml" filepath="$PROJECT_DIR$/colorfulanimview/colorfulanimview.iml" />
     </modules>
   </component>

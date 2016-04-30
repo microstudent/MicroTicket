@@ -32,4 +32,10 @@
 
     <!--item大小-->
     <dimen name="item_movie_height">100dp</dimen>
+
+    <dimen name="list_item_height_normal">50dp</dimen>
+    <dimen name="list_item_height_small">40dp</dimen>
+    <dimen name="list_item_height_large">60dp</dimen>
+    <dimen name="list_item_height_huge">80dp</dimen>
+
 </resources>

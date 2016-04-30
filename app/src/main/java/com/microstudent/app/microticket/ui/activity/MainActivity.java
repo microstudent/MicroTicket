@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import com.microstudent.app.microticket.R;
 import com.microstudent.app.microticket.model.entity.Movie;
 import com.microstudent.app.microticket.ui.common.BaseActivity;
+import com.microstudent.app.microticket.ui.fragment.CityListFragment;
 import com.microstudent.app.microticket.ui.fragment.LeastReleaseFragment;
 
 
@@ -23,7 +24,8 @@ public class MainActivity extends BaseActivity {
     protected void setupView(Bundle savedInstanceState) {
         setSupportActionBar(toolbar);
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, LeastReleaseFragment.newInstance(210)).commit();
+//            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, LeastReleaseFragment.newInstance(210)).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new CityListFragment()).commit();
         }
     }
 

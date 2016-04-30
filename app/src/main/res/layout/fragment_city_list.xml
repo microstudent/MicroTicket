@@ -2,10 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.microstudent.app.microticket.ui.fragment.CityListFragment">
+    tools:context="com.microstudent.app.microticket.ui.fragment.CityListFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <com.microstudent.app.bouncyfastscroller.vertical.VerticalBouncyFastScroller
+        android:id="@+id/vbfs"
+        app:behavior="simple"
+        app:theme_color="@color/colorAccent"
+        app:alpha2="0.6"
+        android:layout_gravity="center_vertical|end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </FrameLayout>

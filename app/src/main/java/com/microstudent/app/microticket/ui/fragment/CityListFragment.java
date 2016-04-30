@@ -1,6 +1,7 @@
 package com.microstudent.app.microticket.ui.fragment;
 
 
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.microstudent.app.bouncyfastscroller.vertical.VerticalBouncyFastScroller;
 import com.microstudent.app.microticket.R;
 import com.microstudent.app.microticket.adapter.CityListAdapter;
 import com.microstudent.app.microticket.adapter.MoviesAdapter;
@@ -19,6 +21,7 @@ public class CityListFragment extends BaseFragment {
 
     private RecyclerView mRecyclerView;
     private CityListPresenterImpl mPresenter;
+    private VerticalBouncyFastScroller mScroller;
 
     @Override
     public int getLayoutId() {
@@ -30,12 +33,20 @@ public class CityListFragment extends BaseFragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv);
 
         mPresenter = new CityListPresenterImpl(this);
+        mScroller = (VerticalBouncyFastScroller) view.findViewById(R.id.vbfs);
     }
 
     @Override
     protected void setupViews(Bundle bundle) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                super.onDraw(c, parent, state);
+            }
+        });
         mPresenter.loadData();
+        mScroller.setRecyclerView(mRecyclerView);
     }
 
     public void setAdapter(CityListAdapter adapter) {
