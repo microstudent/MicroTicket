@@ -41,15 +41,12 @@ public class City implements Comparable<City>{
         return name;
     }
 
+    public char getFirstLetter() {
+        return pinyin.charAt(0);
+    }
+
     @Override
     public int compareTo(@NonNull City another) {
-        int i = 0;
-        char a, b;
-        do {
-            a = PinyinUtils.getPinyinLetter(name, i);
-            b = PinyinUtils.getPinyinLetter(another.name, i);
-            i++;
-        } while (a == b && i < name.length() && i < another.name.length());
-        return a - b;
+        return getFirstLetter() - another.getFirstLetter();
     }
 }

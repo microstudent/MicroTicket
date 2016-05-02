@@ -16,6 +16,7 @@ import com.microstudent.app.microticket.adapter.CityListAdapter;
 import com.microstudent.app.microticket.adapter.MoviesAdapter;
 import com.microstudent.app.microticket.presenter.impl.CityListPresenterImpl;
 import com.microstudent.app.microticket.ui.common.BaseFragment;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 public class CityListFragment extends BaseFragment {
 
@@ -53,6 +54,12 @@ public class CityListFragment extends BaseFragment {
     public void setData(Object[] data) {
         if (data != null) {
             mScroller.setData(data);
+        }
+    }
+
+    public void setItemDecoration(RecyclerView.ItemDecoration decoration) {
+        if (decoration != null) {
+            mRecyclerView.addItemDecoration(decoration);
         }
     }
 

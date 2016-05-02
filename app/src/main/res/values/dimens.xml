@@ -35,6 +35,7 @@
 
     <dimen name="list_item_height_normal">50dp</dimen>
     <dimen name="list_item_height_small">40dp</dimen>
+    <dimen name="list_item_height_thin">20dp</dimen>
     <dimen name="list_item_height_large">60dp</dimen>
     <dimen name="list_item_height_huge">80dp</dimen>
 

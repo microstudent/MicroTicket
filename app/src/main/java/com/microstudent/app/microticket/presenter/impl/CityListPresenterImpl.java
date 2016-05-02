@@ -8,6 +8,7 @@ import com.microstudent.app.microticket.model.OnLoadingCompleteListener;
 import com.microstudent.app.microticket.model.entity.City;
 import com.microstudent.app.microticket.model.impl.CityModelImpl;
 import com.microstudent.app.microticket.ui.fragment.CityListFragment;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,7 @@ public class CityListPresenterImpl implements OnLoadingCompleteListener<ArrayLis
         mView.setAdapter(mAdapter);
 
         mView.setData(getCityArray());
+        mView.setItemDecoration(new StickyRecyclerHeadersDecoration(mAdapter));
     }
 
     @Override
