@@ -2,12 +2,13 @@ package com.microstudent.app.microticket.presenter.impl;
 
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.microstudent.app.microticket.adapter.CityListAdapter;
 import com.microstudent.app.microticket.model.OnLoadingCompleteListener;
 import com.microstudent.app.microticket.model.entity.City;
 import com.microstudent.app.microticket.model.impl.CityModelImpl;
-import com.microstudent.app.microticket.ui.fragment.CityListFragment;
+import com.microstudent.app.microticket.ui.activity.CityListActivity;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import java.util.ArrayList;
@@ -20,13 +21,13 @@ import java.util.List;
 public class CityListPresenterImpl implements OnLoadingCompleteListener<ArrayList<City>>{
     private static final String TAG = "CityListPresenterImpl";
     private CityModelImpl mModel;
-    private CityListFragment mView;
+    private CityListActivity mView;
     private CityListAdapter mAdapter;
 
-    public CityListPresenterImpl(CityListFragment mView) {
+    public CityListPresenterImpl(CityListActivity mView) {
         this.mView = mView;
         mModel = new CityModelImpl();
-        mAdapter = new CityListAdapter(mView.getContext());
+        mAdapter = new CityListAdapter(mView);
     }
 
 
@@ -56,6 +57,6 @@ public class CityListPresenterImpl implements OnLoadingCompleteListener<ArrayLis
     public void onFailure(String msg) {
         Log.d(TAG, "（onFail）In UI thread? "+ String.valueOf(Looper.getMainLooper() == Looper.myLooper()));
 
-        mView.showToast(msg);
+        Toast.makeText(mView, msg, Toast.LENGTH_SHORT).show();
     }
 }
