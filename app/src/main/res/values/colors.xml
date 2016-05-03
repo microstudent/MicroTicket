@@ -8,4 +8,5 @@
     <color name="window_background_color">#eeeeee</color>
 
     <color name="color_gray">#bdbdbd</color>
+    <color name="white">#ffffff</color>
 </resources>
