@@ -83,12 +83,73 @@ public class CityListAdapter extends BaseRvAdapter<CityListAdapter.CityViewHolde
         notifyDataSetChanged();
     }
 
-    public Object[] getDataSet() {
+    public Object[] getDataSetArray() {
         if (mData != null) {
             return mData.toArray();
         }
         return null;
     }
+
+    public List<City> getDataSet() {
+        return mData;
+    }
+
+    public City removeItem(int position) {
+        final City city = mData.remove(position);
+        notifyItemRemoved(position);
+        return city;
+    }
+
+    public void addItem(int position, City city) {
+        mData.add(position, city);
+        notifyItemInserted(position);
+    }
+
+    public void moveItem(int from, int to) {
+        final City city = mData.remove(from);
+        mData.add(to, city);
+        notifyItemMoved(from, to);
+    }
+
+    public void animateTo(List<City> data) {
+        if (data != null) {
+            applyAndAnimateRemovals(data);
+            applyAndAnimateAdditions(data);
+            applyAndAnimateMovedItems(data);
+        }
+    }
+
+    private void applyAndAnimateMovedItems(List<City> data) {
+        for (int toPosition = data.size() - 1; toPosition >= 0; toPosition--) {
+            final City city = data.get(toPosition);
+            final int fromPosition = mData.indexOf(city);
+            if (fromPosition >= 0 && fromPosition != toPosition) {
+                moveItem(fromPosition, toPosition);
+            }
+        }
+    }
+
+    private void applyAndAnimateAdditions(List<City> data) {
+        for (int i = 0, count = data.size(); i < count; i++) {
+            final City city = data.get(i);
+            if (!mData.contains(city)) {
+                addItem(i, city);
+            }
+        }
+    }
+
+
+
+    private void applyAndAnimateRemovals(List<City> data) {
+        for (int i = mData.size() - 1; i >= 0; i--) {
+            final City city = mData.get(i);
+            if (!data.contains(city)) {
+                removeItem(i);
+            }
+        }
+    }
+
+
 
     class CityViewHolder extends BaseViewHolder{
 

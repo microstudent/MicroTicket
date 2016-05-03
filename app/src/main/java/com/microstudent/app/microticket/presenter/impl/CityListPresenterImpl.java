@@ -1,6 +1,7 @@
 package com.microstudent.app.microticket.presenter.impl;
 
 import android.os.Looper;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,11 +19,13 @@ import java.util.List;
  *
  * Created by MicroStudent on 2016/4/8.
  */
-public class CityListPresenterImpl implements OnLoadingCompleteListener<ArrayList<City>>{
+public class CityListPresenterImpl implements OnLoadingCompleteListener<ArrayList<City>>,SearchView.OnQueryTextListener{
     private static final String TAG = "CityListPresenterImpl";
     private CityModelImpl mModel;
     private CityListActivity mView;
     private CityListAdapter mAdapter;
+
+    private List<City> mCityList;
 
     public CityListPresenterImpl(CityListActivity mView) {
         this.mView = mView;
@@ -36,7 +39,7 @@ public class CityListPresenterImpl implements OnLoadingCompleteListener<ArrayLis
     }
 
     public Object[] getCityArray() {
-        return mAdapter.getDataSet();
+        return mAdapter.getDataSetArray();
     }
 
     public void onDestroy() {
@@ -49,6 +52,9 @@ public class CityListPresenterImpl implements OnLoadingCompleteListener<ArrayLis
         mAdapter.setDataSet(data);
         mView.setAdapter(mAdapter);
 
+        //data now is sorted. and we must get the copy one.
+        mCityList = new ArrayList<>(mAdapter.getDataSet());
+
         mView.setData(getCityArray());
         mView.setItemDecoration(new StickyRecyclerHeadersDecoration(mAdapter));
     }
@@ -58,5 +64,30 @@ public class CityListPresenterImpl implements OnLoadingCompleteListener<ArrayLis
         Log.d(TAG, "（onFail）In UI thread? "+ String.valueOf(Looper.getMainLooper() == Looper.myLooper()));
 
         Toast.makeText(mView, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        final List<City> filteredModelList = filter(mCityList, newText);
+        mAdapter.animateTo(filteredModelList);
+        mView.scrollToPosition(0);
+        return true;
+    }
+
+    private List<City> filter(List<City> data, String query) {
+        final List<City> filteredModelList = new ArrayList<>();
+        for (City city : data) {
+            final String pinyin = city.getPinyin();
+            final String name = city.getName();
+            if (pinyin.contains(query) || name.contains(query)) {
+                filteredModelList.add(city);
+            }
+        }
+        return filteredModelList;
     }
 }

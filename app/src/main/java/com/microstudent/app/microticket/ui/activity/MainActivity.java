@@ -34,15 +34,6 @@ public class MainActivity extends BaseActivity {
         fragmentContainer = (FrameLayout) findViewById(R.id.fragment_container);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.citylist_menu, menu);
-        // Retrieve the SearchView and plug it into SearchManager
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        return true;
-    }
 
     @Override
     protected int getContentViewId() {
